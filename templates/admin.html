@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ASHVIK Finance - Admin Panel</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #22c55e;
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            padding: 9px 15px;
+            border-radius: 7px;
+        }
+
+        .website {
+            background: #334155;
+        }
+
+        .logout {
+            background: #dc2626;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 35px auto;
+        }
+
+        .heading {
+            margin-bottom: 25px;
+        }
+
+        .heading h1 {
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+
+        .heading p {
+            color: #64748b;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(200px, 1fr));
+
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .stat h3 {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat strong {
+            font-size: 30px;
+        }
+
+        /* FLASH */
+
+        .message {
+            padding: 14px 18px;
+            border-radius: 9px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ADD LOAN */
+
+        .panel {
+            background: white;
+            padding: 28px;
+            border-radius: 17px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .panel h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #334155;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            padding: 12px;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #22c55e;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .add-btn {
+            margin-top: 18px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #15803d;
+        }
+
+        /* LOANS */
+
+        .loan-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 18px;
+        }
+
+        .loan-card {
+            background: white;
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.06);
+        }
+
+        .loan-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .loan-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .loan-card strong {
+            color: #0f172a;
+        }
+
+        .loan-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .loan-buttons a,
+        .loan-buttons button {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .view {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .edit {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* APPLICATIONS */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            min-width: 1100px;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8fafc;
+            text-align: left;
+            padding: 13px;
+            font-size: 13px;
+        }
+
+        td {
+            padding: 13px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 13px;
+        }
+
+        .status-form {
+            display: flex;
+            gap: 5px;
+        }
+
+        .status-form select {
+            width: 120px;
+            padding: 7px;
+        }
+
+        .status-form button {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-app {
+            border: none;
+            background: #dc2626;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        @media(max-width: 700px) {
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .nav-right a {
+                display: none;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ASHVIK <span>FINANCE</span>
+    </div>
+
+    <div class="nav-right">
+
+        <a
+            href="/"
+            class="website"
+        >
+            Website
+        </a>
+
+        <a
+            href="/admin/logout"
+            class="logout"
+        >
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+
+    <div class="heading">
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Manage loans and customer applications
+        </p>
+
+    </div>
+
+
+    <!-- FLASH -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <h3>
+                Total Loans
+            </h3>
+
+            <strong>
+                {{ total_loans }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                Total Applications
+            </h3>
+
+            <strong>
+                {{ total_applications }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                Pending Applications
+            </h3>
+
+            <strong>
+                {{ pending_applications }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                Approved Applications
+            </h3>
+
+            <strong>
+                {{ approved_applications }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADD LOAN -->
+
+    <div class="panel">
+
+        <h2>
+            Add New Loan
+        </h2>
+
+        <form
+            action="/admin/loan/add"
+            method="POST"
+        >
+
+            <div class="form-grid">
+
+
+                <div class="field">
+
+                    <label>
+                        Loan Title
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Example: Personal Loan"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Loan Amount
+                    </label>
+
+                    <input
+                        type="text"
+                        name="amount"
+                        placeholder="Example: ₹5,00,000"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Interest Rate
+                    </label>
+
+                    <input
+                        type="text"
+                        name="interest"
+                        placeholder="Example: 10.5% per annum"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Tenure
+                    </label>
+
+                    <input
+                        type="text"
+                        name="tenure"
+                        placeholder="Example: 1 - 5 Years"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        Eligibility
+                    </label>
+
+                    <input
+                        type="text"
+                        name="eligibility"
+                        placeholder="Example: Age 21+, Salaried / Self Employed"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        name="description"
+                        placeholder="Enter complete loan details..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="add-btn"
+            >
+                + Add Loan
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- LOANS -->
+
+    <div class="panel">
+
+        <h2>
+            Available Loans
+        </h2>
+
+        {% if loans %}
+
+        <div class="loan-grid">
+
+            {% for loan in loans %}
+
+            <div class="loan-card">
+
+                <h3>
+                    {{ loan.title or loan.loan_name }}
+                </h3>
+
+                <p>
+                    <strong>Amount:</strong>
+                    {{ loan.amount or "Not specified" }}
+                </p>
+
+                <p>
+                    <strong>Interest:</strong>
+                    {{ loan.interest or "Not specified" }}
+                </p>
+
+                <p>
+                    <strong>Tenure:</strong>
+                    {{ loan.tenure or "Not specified" }}
+                </p>
+
+                <p>
+                    <strong>Eligibility:</strong>
+                    {{ loan.eligibility or "Contact us" }}
+                </p>
+
+                <p>
+                    {{ loan.description or "No description available." }}
+                </p>
+
+
+                <div class="loan-buttons">
+
+                    <a
+                        href="/loan/{{ loan.id }}"
+                        class="view"
+                    >
+                        View
+                    </a>
+
+                    <a
+                        href="/admin/loan/edit/{{ loan.id }}"
+                        class="edit"
+                    >
+                        Edit
+                    </a>
+
+                    <form
+                        action="/admin/loan/delete/{{ loan.id }}"
+                        method="POST"
+                        style="flex:1;"
+                    >
+
+                        <button
+                            type="submit"
+                            class="delete"
+                            style="width:100%;"
+                            onclick="return confirm('Delete this loan?')"
+                        >
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p style="color:#64748b;">
+            No loans added yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- APPLICATIONS -->
+
+    <div class="panel">
+
+        <h2>
+            Customer Applications
+        </h2>
+
+        {% if applications %}
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Contact</th>
+                        <th>Location</th>
+                        <th>Employment</th>
+                        <th>Income</th>
+                        <th>Loan</th>
+                        <th>Requested</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for application in applications %}
+
+                    <tr>
+
+                        <td>
+                            #{{ application.id }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ application.name }}
+                            </strong>
+                        </td>
+
+                        <td>
+
+                            {{ application.mobile }}
+
+                            {% if application.email %}
+                                <br>
+                                {{ application.email }}
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+                            {{ application.city or "-" }}
+                        </td>
+
+                        <td>
+                            {{ application.employment or "-" }}
+                        </td>
+
+                        <td>
+                            {{ application.monthly_income or "-" }}
+                        </td>
+
+                        <td>
+                            {{ application.loan_title or "-" }}
+                        </td>
+
+                        <td>
+                            {{ application.loan_amount or "-" }}
+                        </td>
+
+                        <td>
+
+                            <form
+                                action="/admin/application/status/{{ application.id }}"
+                                method="POST"
+                                class="status-form"
+                            >
+
+                                <select name="status">
+
+                                    <option
+                                        value="Pending"
+                                        {% if application.status == "Pending" %}selected{% endif %}
+                                    >
+                                        Pending
+                                    </option>
+
+                                    <option
+                                        value="Approved"
+                                        {% if application.status == "Approved" %}selected{% endif %}
+                                    >
+                                        Approved
+                                    </option>
+
+                                    <option
+                                        value="Rejected"
+                                        {% if application.status == "Rejected" %}selected{% endif %}
+                                    >
+                                        Rejected
+                                    </option>
+
+                                    <option
+                                        value="Contacted"
+                                        {% if application.status == "Contacted" %}selected{% endif %}
+                                    >
+                                        Contacted
+                                    </option>
+
+                                </select>
+
+                                <button type="submit">
+                                    Save
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                        <td>
+
+                            <form
+                                action="/admin/application/delete/{{ application.id }}"
+                                method="POST"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="delete-app"
+                                    onclick="return confirm('Delete this application?')"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <p style="color:#64748b;">
+            No customer applications yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

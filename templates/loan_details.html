@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASHVIK Finance - Loan Details</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #0b1220;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1050px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .loan-card {
+            background: white;
+            border-radius: 22px;
+            padding: 40px;
+            box-shadow: 0 15px 45px rgba(15, 23, 42, 0.10);
+        }
+
+        .loan-title {
+            font-size: 38px;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        .description {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        /* DETAILS */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .detail-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 22px;
+        }
+
+        .detail-label {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 21px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* ELIGIBILITY */
+
+        .eligibility {
+            background: #eff6ff;
+            border-left: 5px solid #2563eb;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+        }
+
+        .eligibility h3 {
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+
+        .eligibility p {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* BUTTON */
+
+        .apply-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #64748b;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 16px 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .container {
+                margin: 30px auto;
+            }
+
+            .loan-card {
+                padding: 25px;
+            }
+
+            .loan-title {
+                font-size: 29px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ASHVIK <span>FINANCE</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/user-panel">
+                User Panel
+            </a>
+
+            <a href="/apply">
+                Apply
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- CONTENT -->
+
+    <main class="container">
+
+        <a href="/" class="back">
+            ← Back to Loans
+        </a>
+
+        <div class="loan-card">
+
+            <h1 class="loan-title">
+                {{ loan.title or loan.loan_name or loan.loan_type }}
+            </h1>
+
+            <p class="description">
+                {{ loan.description or "Loan facility available through ASHVIK Finance." }}
+            </p>
+
+
+            <!-- LOAN DETAILS -->
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Loan Amount
+                    </div>
+
+                    <div class="detail-value">
+                        {{ loan.amount or "Contact Us" }}
+                    </div>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Interest Rate
+                    </div>
+
+                    <div class="detail-value">
+                        {{ loan.interest or "Contact Us" }}
+                    </div>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Tenure
+                    </div>
+
+                    <div class="detail-value">
+                        {{ loan.tenure or "Contact Us" }}
+                    </div>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <div class="detail-label">
+                        Loan Type
+                    </div>
+
+                    <div class="detail-value">
+                        {{ loan.loan_type or loan.title or "Loan" }}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ELIGIBILITY -->
+
+            <div class="eligibility">
+
+                <h3>
+                    Eligibility
+                </h3>
+
+                <p>
+                    {{ loan.eligibility or "Eligibility details will be discussed with our team." }}
+                </p>
+
+            </div>
+
+
+            <!-- APPLY -->
+
+            <a
+                href="/apply?loan_id={{ loan.id }}"
+                class="apply-btn"
+            >
+                Apply Now →
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 ASHVIK Finance. All rights reserved.
+
+    </footer>
+
+</body>
+</html>

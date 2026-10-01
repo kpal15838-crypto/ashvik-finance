@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASHVIK Finance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top left, #243b78 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #4c1d6f 0%, transparent 35%),
+                #070b18;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            display: inline-block;
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #8ec5ff,
+                #c084fc,
+                #ffffff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: #aeb9d4;
+            font-size: 17px;
+            margin-bottom: 55px;
+        }
+
+        .heading {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .subheading {
+            color: #9da9c4;
+            font-size: 15px;
+            margin-bottom: 35px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .card {
+            position: relative;
+            padding: 42px 30px;
+            border-radius: 24px;
+
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            text-decoration: none;
+            color: white;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            top: -80px;
+            right: -80px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.11);
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .icon {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 24px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 22px;
+
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+
+            font-size: 38px;
+        }
+
+        .user-card .icon {
+            background: rgba(59, 130, 246, 0.18);
+        }
+
+        .admin-card .icon {
+            background: rgba(168, 85, 247, 0.18);
+        }
+
+        .card h2 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #aab5cf;
+            line-height: 1.6;
+            font-size: 14px;
+            min-height: 45px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 28px;
+            border-radius: 12px;
+
+            font-weight: 700;
+            font-size: 14px;
+
+            background: white;
+            color: #101525;
+
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover .button {
+            transform: scale(1.04);
+        }
+
+        .footer {
+            margin-top: 55px;
+            color: #6f7b96;
+            font-size: 13px;
+        }
+
+        .footer span {
+            color: #aeb9d4;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 30px 18px;
+            }
+
+            .logo {
+                font-size: 32px;
+                letter-spacing: 3px;
+            }
+
+            .tagline {
+                font-size: 14px;
+                margin-bottom: 40px;
+            }
+
+            .heading {
+                font-size: 25px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                max-width: 430px;
+            }
+
+            .card {
+                padding: 35px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            ASHVIK
+        </div>
+
+        <div class="tagline">
+            Smart & Simple Finance Solutions
+        </div>
+
+        <h1 class="heading">
+            Welcome to ASHVIK Finance
+        </h1>
+
+        <p class="subheading">
+            Please select how you want to continue
+        </p>
+
+        <div class="cards">
+
+            <!-- USER CARD -->
+            <a href="{{ url_for('user_home') }}" class="card user-card">
+
+                <div class="icon">
+                    👤
+                </div>
+
+                <h2>
+                    User
+                </h2>
+
+                <p>
+                    Explore available loans, check loan details
+                    and submit your loan application online.
+                </p>
+
+                <span class="button">
+                    Continue as User
+                </span>
+
+            </a>
+
+
+            <!-- ADMIN CARD -->
+            <a href="{{ url_for('admin_login') }}" class="card admin-card">
+
+                <div class="icon">
+                    🔐
+                </div>
+
+                <h2>
+                    Admin
+                </h2>
+
+                <p>
+                    Manage loans, view customer applications
+                    and control your ASHVIK Finance dashboard.
+                </p>
+
+                <span class="button">
+                    Admin Login
+                </span>
+
+            </a>
+
+        </div>
+
+        <div class="footer">
+            © 2026 <span>ASHVIK Finance</span>. All Rights Reserved.
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+ashvik.db
+ashvik_backup.db
+ashvik_error.txt
