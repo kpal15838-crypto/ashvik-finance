@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ASHVIK Finance - Admin Panel</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -33,6 +26,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
 
         .logo {
@@ -46,19 +40,25 @@
 
         .nav-right {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-right a {
             color: white;
             text-decoration: none;
-            padding: 9px 15px;
-            border-radius: 7px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
         }
 
         .website {
             background: #334155;
+        }
+
+        .owner-btn {
+            background: #2563eb;
         }
 
         .logout {
@@ -84,13 +84,74 @@
             color: #64748b;
         }
 
+        /* OWNER */
+
+        .owner-banner {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            color: white;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .owner-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .owner-photo,
+        .owner-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+
+        .owner-photo {
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        .owner-avatar {
+            background: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            border: 3px solid white;
+        }
+
+        .owner-info h2 {
+            margin-bottom: 5px;
+        }
+
+        .owner-info p {
+            color: #cbd5e1;
+        }
+
+        .manage-owner {
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .manage-owner:hover {
+            background: #16a34a;
+        }
+
         /* STATS */
 
         .stats {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(200px, 1fr));
-
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 18px;
             margin-bottom: 30px;
         }
@@ -131,7 +192,7 @@
             color: #991b1b;
         }
 
-        /* ADD LOAN */
+        /* PANEL */
 
         .panel {
             background: white;
@@ -145,11 +206,11 @@
             margin-bottom: 20px;
         }
 
+        /* FORM */
+
         .form-grid {
             display: grid;
-            grid-template-columns:
-                repeat(2, 1fr);
-
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
@@ -211,9 +272,7 @@
 
         .loan-grid {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
-
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 18px;
         }
 
@@ -222,6 +281,7 @@
             padding: 22px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,.06);
+            border: 1px solid #e2e8f0;
         }
 
         .loan-card h3 {
@@ -297,6 +357,7 @@
             padding: 13px;
             border-top: 1px solid #e2e8f0;
             font-size: 13px;
+            vertical-align: top;
         }
 
         .status-form {
@@ -327,14 +388,28 @@
             cursor: pointer;
         }
 
+        .empty {
+            color: #64748b;
+        }
+
+        /* MOBILE */
+
         @media(max-width: 700px) {
 
             .navbar {
                 padding: 15px;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-right {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
             }
 
             .nav-right a {
-                display: none;
+                text-align: center;
             }
 
             .container {
@@ -352,17 +427,30 @@
             .panel {
                 padding: 20px;
             }
+
+            .owner-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .owner-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .manage-owner {
+                width: 100%;
+                text-align: center;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-<!-- NAVBAR -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <nav class="navbar">
 
@@ -373,17 +461,33 @@
     <div class="nav-right">
 
         <a
-            href="/"
+            href="{{ url_for('user_home') }}"
             class="website"
         >
-            Website
+            🌐 Website
+        </a>
+
+        <!-- MAIN OWNER PROFILE -->
+        <a
+            href="{{ url_for('owner_settings') }}"
+            class="owner-btn"
+        >
+            👤 Owner Profile
+        </a>
+
+        <!-- BACKUP OWNER PROFILE -->
+        <a
+            href="{{ url_for('admin_owner_backup') }}"
+            class="owner-btn"
+        >
+            ⚙️ Owner Settings
         </a>
 
         <a
-            href="/admin/logout"
+            href="{{ url_for('admin_logout') }}"
             class="logout"
         >
-            Logout
+            🚪 Logout
         </a>
 
     </div>
@@ -393,6 +497,7 @@
 
 <div class="container">
 
+    <!-- HEADING -->
 
     <div class="heading">
 
@@ -401,13 +506,13 @@
         </h1>
 
         <p>
-            Manage loans and customer applications
+            Manage loans, owner profile and customer applications
         </p>
 
     </div>
 
 
-    <!-- FLASH -->
+    <!-- FLASH MESSAGES -->
 
     {% with messages = get_flashed_messages(with_categories=true) %}
 
@@ -426,85 +531,105 @@
     {% endwith %}
 
 
-    <!-- STATS -->
+    <!-- =================================================
+         OWNER PROFILE
+    ================================================== -->
+
+    <div class="owner-banner">
+
+        <div class="owner-info">
+
+            {% if owner and owner["owner_photo"] %}
+
+                <img
+                    class="owner-photo"
+                    src="{{ url_for('static', filename=owner['owner_photo']) }}"
+                    alt="Owner Photo"
+                >
+
+            {% else %}
+
+                <div class="owner-avatar">
+                    👤
+                </div>
+
+            {% endif %}
+
+
+            <div>
+
+                <h2>
+                    {{ owner["owner_name"] if owner and owner["owner_name"] else "Owner Profile" }}
+                </h2>
+
+                <p>
+                    {{ owner["company_name"] if owner and owner["company_name"] else "ASHVIK FINANCE" }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="{{ url_for('owner_settings') }}"
+            class="manage-owner"
+        >
+            ✏️ Manage Owner
+        </a>
+
+    </div>
+
+
+    <!-- =================================================
+         STATS
+    ================================================== -->
 
     <div class="stats">
 
         <div class="stat">
-
-            <h3>
-                Total Loans
-            </h3>
-
-            <strong>
-                {{ total_loans }}
-            </strong>
-
+            <h3>Total Loans</h3>
+            <strong>{{ total_loans }}</strong>
         </div>
 
-
         <div class="stat">
-
-            <h3>
-                Total Applications
-            </h3>
-
-            <strong>
-                {{ total_applications }}
-            </strong>
-
+            <h3>Total Applications</h3>
+            <strong>{{ total_applications }}</strong>
         </div>
 
-
         <div class="stat">
-
-            <h3>
-                Pending Applications
-            </h3>
-
-            <strong>
-                {{ pending_applications }}
-            </strong>
-
+            <h3>Pending Applications</h3>
+            <strong>{{ pending_applications }}</strong>
         </div>
 
-
         <div class="stat">
-
-            <h3>
-                Approved Applications
-            </h3>
-
-            <strong>
-                {{ approved_applications }}
-            </strong>
-
+            <h3>Approved Applications</h3>
+            <strong>{{ approved_applications }}</strong>
         </div>
 
     </div>
 
 
-    <!-- ADD LOAN -->
+    <!-- =================================================
+         ADD LOAN
+    ================================================== -->
 
     <div class="panel">
 
         <h2>
-            Add New Loan
+            ➕ Add New Loan
         </h2>
 
         <form
-            action="/admin/loan/add"
+            action="{{ url_for('add_loan') }}"
             method="POST"
         >
 
             <div class="form-grid">
 
-
                 <div class="field">
 
-                    <label>
-                        Loan Title
-                    </label>
+                    <label>Loan Title</label>
 
                     <input
                         type="text"
@@ -518,9 +643,7 @@
 
                 <div class="field">
 
-                    <label>
-                        Loan Amount
-                    </label>
+                    <label>Loan Amount</label>
 
                     <input
                         type="text"
@@ -533,9 +656,7 @@
 
                 <div class="field">
 
-                    <label>
-                        Interest Rate
-                    </label>
+                    <label>Interest Rate</label>
 
                     <input
                         type="text"
@@ -548,9 +669,7 @@
 
                 <div class="field">
 
-                    <label>
-                        Tenure
-                    </label>
+                    <label>Tenure</label>
 
                     <input
                         type="text"
@@ -563,9 +682,7 @@
 
                 <div class="field full">
 
-                    <label>
-                        Eligibility
-                    </label>
+                    <label>Eligibility</label>
 
                     <input
                         type="text"
@@ -578,9 +695,7 @@
 
                 <div class="field full">
 
-                    <label>
-                        Description
-                    </label>
+                    <label>Description</label>
 
                     <textarea
                         name="description"
@@ -604,266 +719,323 @@
     </div>
 
 
-    <!-- LOANS -->
+    <!-- =================================================
+         AVAILABLE LOANS
+    ================================================== -->
 
     <div class="panel">
 
         <h2>
-            Available Loans
+            💰 Available Loans
         </h2>
+
 
         {% if loans %}
 
-        <div class="loan-grid">
+            <div class="loan-grid">
 
-            {% for loan in loans %}
+                {% for loan in loans %}
 
-            <div class="loan-card">
+                    <div class="loan-card">
 
-                <h3>
-                    {{ loan.title or loan.loan_name }}
-                </h3>
-
-                <p>
-                    <strong>Amount:</strong>
-                    {{ loan.amount or "Not specified" }}
-                </p>
-
-                <p>
-                    <strong>Interest:</strong>
-                    {{ loan.interest or "Not specified" }}
-                </p>
-
-                <p>
-                    <strong>Tenure:</strong>
-                    {{ loan.tenure or "Not specified" }}
-                </p>
-
-                <p>
-                    <strong>Eligibility:</strong>
-                    {{ loan.eligibility or "Contact us" }}
-                </p>
-
-                <p>
-                    {{ loan.description or "No description available." }}
-                </p>
+                        <h3>
+                            {{ loan.title or loan.loan_name }}
+                        </h3>
 
 
-                <div class="loan-buttons">
-
-                    <a
-                        href="/loan/{{ loan.id }}"
-                        class="view"
-                    >
-                        View
-                    </a>
-
-                    <a
-                        href="/admin/loan/edit/{{ loan.id }}"
-                        class="edit"
-                    >
-                        Edit
-                    </a>
-
-                    <form
-                        action="/admin/loan/delete/{{ loan.id }}"
-                        method="POST"
-                        style="flex:1;"
-                    >
-
-                        <button
-                            type="submit"
-                            class="delete"
-                            style="width:100%;"
-                            onclick="return confirm('Delete this loan?')"
-                        >
-                            Delete
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-        {% else %}
-
-        <p style="color:#64748b;">
-            No loans added yet.
-        </p>
-
-        {% endif %}
-
-    </div>
+                        <p>
+                            <strong>Amount:</strong>
+                            {{ loan.amount or "Not specified" }}
+                        </p>
 
 
-    <!-- APPLICATIONS -->
-
-    <div class="panel">
-
-        <h2>
-            Customer Applications
-        </h2>
-
-        {% if applications %}
-
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Customer</th>
-                        <th>Contact</th>
-                        <th>Location</th>
-                        <th>Employment</th>
-                        <th>Income</th>
-                        <th>Loan</th>
-                        <th>Requested</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-
-                    </tr>
-
-                </thead>
+                        <p>
+                            <strong>Interest:</strong>
+                            {{ loan.interest or "Not specified" }}
+                        </p>
 
 
-                <tbody>
+                        <p>
+                            <strong>Tenure:</strong>
+                            {{ loan.tenure or "Not specified" }}
+                        </p>
 
-                    {% for application in applications %}
 
-                    <tr>
+                        <p>
+                            <strong>Eligibility:</strong>
+                            {{ loan.eligibility or "Contact us" }}
+                        </p>
 
-                        <td>
-                            #{{ application.id }}
-                        </td>
 
-                        <td>
-                            <strong>
-                                {{ application.name }}
-                            </strong>
-                        </td>
+                        <p>
+                            {{ loan.description or "No description available." }}
+                        </p>
 
-                        <td>
 
-                            {{ application.mobile }}
+                        <div class="loan-buttons">
 
-                            {% if application.email %}
-                                <br>
-                                {{ application.email }}
-                            {% endif %}
-
-                        </td>
-
-                        <td>
-                            {{ application.city or "-" }}
-                        </td>
-
-                        <td>
-                            {{ application.employment or "-" }}
-                        </td>
-
-                        <td>
-                            {{ application.monthly_income or "-" }}
-                        </td>
-
-                        <td>
-                            {{ application.loan_title or "-" }}
-                        </td>
-
-                        <td>
-                            {{ application.loan_amount or "-" }}
-                        </td>
-
-                        <td>
-
-                            <form
-                                action="/admin/application/status/{{ application.id }}"
-                                method="POST"
-                                class="status-form"
+                            <a
+                                href="{{ url_for('loan_details', loan_id=loan.id) }}"
+                                class="view"
                             >
+                                View
+                            </a>
 
-                                <select name="status">
 
-                                    <option
-                                        value="Pending"
-                                        {% if application.status == "Pending" %}selected{% endif %}
-                                    >
-                                        Pending
-                                    </option>
+                            <a
+                                href="{{ url_for('edit_loan', loan_id=loan.id) }}"
+                                class="edit"
+                            >
+                                Edit
+                            </a>
 
-                                    <option
-                                        value="Approved"
-                                        {% if application.status == "Approved" %}selected{% endif %}
-                                    >
-                                        Approved
-                                    </option>
-
-                                    <option
-                                        value="Rejected"
-                                        {% if application.status == "Rejected" %}selected{% endif %}
-                                    >
-                                        Rejected
-                                    </option>
-
-                                    <option
-                                        value="Contacted"
-                                        {% if application.status == "Contacted" %}selected{% endif %}
-                                    >
-                                        Contacted
-                                    </option>
-
-                                </select>
-
-                                <button type="submit">
-                                    Save
-                                </button>
-
-                            </form>
-
-                        </td>
-
-                        <td>
 
                             <form
-                                action="/admin/application/delete/{{ application.id }}"
+                                action="{{ url_for('delete_loan', loan_id=loan.id) }}"
                                 method="POST"
+                                style="flex:1;"
                             >
 
                                 <button
                                     type="submit"
-                                    class="delete-app"
-                                    onclick="return confirm('Delete this application?')"
+                                    class="delete"
+                                    style="width:100%;"
+                                    onclick="return confirm('Delete this loan?')"
                                 >
                                     Delete
                                 </button>
 
                             </form>
 
-                        </td>
+                        </div>
 
-                    </tr>
+                    </div>
 
-                    {% endfor %}
+                {% endfor %}
 
-                </tbody>
-
-            </table>
-
-        </div>
+            </div>
 
         {% else %}
 
-        <p style="color:#64748b;">
-            No customer applications yet.
-        </p>
+            <p class="empty">
+                No loans added yet.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =================================================
+         CUSTOMER APPLICATIONS
+    ================================================== -->
+
+    <div class="panel">
+
+        <h2>
+            📋 Customer Applications
+        </h2>
+
+
+        {% if applications %}
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Contact</th>
+                            <th>Location</th>
+                            <th>Employment</th>
+                            <th>Income</th>
+                            <th>Loan</th>
+                            <th>Requested</th>
+                            <th>Status</th>
+                            <th>Delete</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for application in applications %}
+
+                            <tr>
+
+                                <td>
+                                    #{{ application.id }}
+                                </td>
+
+
+                                <td>
+
+                                    <strong>
+                                        {{ application.name }}
+                                    </strong>
+
+                                    {% if application.address %}
+
+                                        <br>
+
+                                        <small>
+                                            {{ application.address }}
+                                        </small>
+
+                                    {% endif %}
+
+                                    {% if application.message %}
+
+                                        <br><br>
+
+                                        <small>
+                                            {{ application.message }}
+                                        </small>
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+
+                                    {{ application.mobile }}
+
+                                    {% if application.email %}
+
+                                        <br>
+
+                                        {{ application.email }}
+
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td>
+                                    {{ application.city or "-" }}
+                                </td>
+
+
+                                <td>
+                                    {{ application.employment or "-" }}
+                                </td>
+
+
+                                <td>
+                                    {{ application.monthly_income or "-" }}
+                                </td>
+
+
+                                <td>
+                                    {{ application.loan_title or "-" }}
+                                </td>
+
+
+                                <td>
+                                    {{ application.loan_amount or "-" }}
+                                </td>
+
+
+                                <td>
+
+                                    <form
+                                        action="{{ url_for('update_application_status', application_id=application.id) }}"
+                                        method="POST"
+                                        class="status-form"
+                                    >
+
+                                        <select name="status">
+
+                                            <option
+                                                value="Pending"
+                                                {% if application.status == "Pending" %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                Pending
+                                            </option>
+
+
+                                            <option
+                                                value="Approved"
+                                                {% if application.status == "Approved" %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                Approved
+                                            </option>
+
+
+                                            <option
+                                                value="Rejected"
+                                                {% if application.status == "Rejected" %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                Rejected
+                                            </option>
+
+
+                                            <option
+                                                value="Contacted"
+                                                {% if application.status == "Contacted" %}
+                                                    selected
+                                                {% endif %}
+                                            >
+                                                Contacted
+                                            </option>
+
+                                        </select>
+
+
+                                        <button type="submit">
+                                            Save
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+
+                                <td>
+
+                                    <form
+                                        action="{{ url_for('delete_application', application_id=application.id) }}"
+                                        method="POST"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="delete-app"
+                                            onclick="return confirm('Delete this application?')"
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <p class="empty">
+                No customer applications yet.
+            </p>
 
         {% endif %}
 
@@ -871,7 +1043,5 @@
 
 </div>
 
-
 </body>
-
 </html>

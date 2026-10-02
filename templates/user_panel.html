@@ -85,19 +85,12 @@
         /* ================= WELCOME ================= */
 
         .welcome {
-            background: linear-gradient(
-                135deg,
-                #0f172a,
-                #1e293b
-            );
-
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             color: white;
             padding: 40px;
             border-radius: 22px;
             margin-bottom: 35px;
-
-            box-shadow:
-                0 15px 40px rgba(15,23,42,0.18);
+            box-shadow: 0 15px 40px rgba(15,23,42,0.18);
         }
 
         .welcome h1 {
@@ -110,6 +103,138 @@
             font-size: 16px;
             line-height: 1.7;
             max-width: 700px;
+        }
+
+        /* =====================================================
+           OWNER PROFILE
+        ====================================================== */
+
+        .owner-section {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+        }
+
+        .owner-title {
+            margin-bottom: 25px;
+        }
+
+        .owner-title h2 {
+            font-size: 25px;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .owner-title p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .owner-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .owner-photo-box {
+            width: 170px;
+            height: 170px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid #dcfce7;
+            box-shadow: 0 8px 25px rgba(22,163,74,0.15);
+        }
+
+        .owner-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .owner-placeholder {
+            font-size: 65px;
+        }
+
+        .owner-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .owner-name {
+            font-size: 30px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .owner-company {
+            color: #16a34a;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .owner-details {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .owner-detail {
+            background: #f8fafc;
+            padding: 13px 15px;
+            border-radius: 10px;
+            border: 1px solid #eef2f7;
+        }
+
+        .owner-detail small {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .owner-detail strong {
+            color: #334155;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .owner-address,
+        .owner-about {
+            margin-top: 12px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            color: #475569;
+            line-height: 1.7;
+            font-size: 14px;
+            border: 1px solid #eef2f7;
+            word-break: break-word;
+        }
+
+        .owner-address strong,
+        .owner-about strong {
+            color: #334155;
+        }
+
+        .owner-empty {
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 12px;
+            text-align: center;
+            color: #64748b;
         }
 
         /* ================= SECTION TITLE ================= */
@@ -134,9 +259,7 @@
 
         .loan-grid {
             display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(290px, 1fr));
-
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 22px;
             margin-bottom: 50px;
         }
@@ -145,20 +268,14 @@
             background: white;
             border-radius: 18px;
             padding: 25px;
-
             border: 1px solid #e2e8f0;
-
-            box-shadow:
-                0 8px 25px rgba(15,23,42,0.06);
-
+            box-shadow: 0 8px 25px rgba(15,23,42,0.06);
             transition: 0.3s;
         }
 
         .loan-card:hover {
             transform: translateY(-5px);
-
-            box-shadow:
-                0 15px 35px rgba(15,23,42,0.12);
+            box-shadow: 0 15px 35px rgba(15,23,42,0.12);
         }
 
         .loan-top {
@@ -176,16 +293,12 @@
         .loan-icon {
             width: 45px;
             height: 45px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             border-radius: 12px;
-
             background: #dcfce7;
             color: #16a34a;
-
             font-size: 22px;
         }
 
@@ -196,8 +309,6 @@
             min-height: 65px;
             margin-bottom: 20px;
         }
-
-        /* ================= LOAN INFO ================= */
 
         .loan-info {
             display: grid;
@@ -223,8 +334,6 @@
             color: #0f172a;
             font-size: 14px;
         }
-
-        /* ================= ELIGIBILITY ================= */
 
         .eligibility {
             background: #f8fafc;
@@ -284,12 +393,8 @@
             background: white;
             border-radius: 20px;
             padding: 25px;
-
             border: 1px solid #e2e8f0;
-
-            box-shadow:
-                0 8px 25px rgba(15,23,42,0.05);
-
+            box-shadow: 0 8px 25px rgba(15,23,42,0.05);
             margin-bottom: 50px;
         }
 
@@ -375,20 +480,13 @@
         /* ================= CTA ================= */
 
         .cta {
-            background: linear-gradient(
-                135deg,
-                #16a34a,
-                #15803d
-            );
-
+            background: linear-gradient(135deg, #16a34a, #15803d);
             padding: 35px;
             border-radius: 20px;
             color: white;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             gap: 25px;
         }
 
@@ -489,15 +587,36 @@
                 display: inline-block;
                 margin-top: 20px;
             }
+
+            .owner-content {
+                display: block;
+                text-align: center;
+            }
+
+            .owner-photo-box {
+                margin: 0 auto 20px auto;
+            }
+
+            .owner-details {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .owner-name {
+                font-size: 24px;
+            }
+
+            .owner-address,
+            .owner-about {
+                text-align: left;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+<!-- ================= NAVBAR ================= -->
 
 <nav class="navbar">
 
@@ -515,10 +634,7 @@
             User Panel
         </a>
 
-        <a
-            href="/apply"
-            class="apply-btn"
-        >
+        <a href="/apply" class="apply-btn">
             Apply Now
         </a>
 
@@ -527,16 +643,9 @@
 </nav>
 
 
-<!-- =====================================================
-     MAIN CONTAINER
-===================================================== -->
-
 <div class="container">
 
-
-    <!-- =================================================
-         WELCOME
-    ================================================== -->
+    <!-- ================= WELCOME ================= -->
 
     <section class="welcome">
 
@@ -553,9 +662,218 @@
     </section>
 
 
-    <!-- =================================================
-         AVAILABLE LOANS
-    ================================================== -->
+    <!-- =====================================================
+         OWNER PROFILE
+    ====================================================== -->
+
+    <section class="owner-section">
+
+        <div class="owner-title">
+
+            <h2>
+                👤 About ASHVIK Finance
+            </h2>
+
+            <p>
+                Owner and company contact information
+            </p>
+
+        </div>
+
+
+        <!-- OWNER DATA EXISTS -->
+
+        {% if owner is defined and owner %}
+
+        <div class="owner-content">
+
+            <!-- OWNER PHOTO -->
+
+            <div class="owner-photo-box">
+
+                {% if owner["owner_photo"] %}
+
+                    <img
+                        src="{{ url_for('static', filename=owner['owner_photo']) }}"
+                        alt="{{ owner['owner_name'] or 'ASHVIK Finance Owner' }}"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+
+                    <div
+                        class="owner-placeholder"
+                        style="display:none; width:100%; height:100%; align-items:center; justify-content:center;"
+                    >
+                        👤
+                    </div>
+
+                {% else %}
+
+                    <div class="owner-placeholder">
+                        👤
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- OWNER INFORMATION -->
+
+            <div class="owner-info">
+
+                <div class="owner-name">
+
+                    {% if owner["owner_name"] %}
+                        {{ owner["owner_name"] }}
+                    {% else %}
+                        ASHVIK Finance
+                    {% endif %}
+
+                </div>
+
+
+                <div class="owner-company">
+
+                    {% if owner["company_name"] %}
+                        {{ owner["company_name"] }}
+                    {% else %}
+                        ASHVIK Finance
+                    {% endif %}
+
+                </div>
+
+
+                <div class="owner-details">
+
+                    <!-- MOBILE -->
+
+                    <div class="owner-detail">
+
+                        <small>
+                            Mobile
+                        </small>
+
+                        <strong>
+
+                            {% if owner["owner_mobile"] %}
+
+                                📞 {{ owner["owner_mobile"] }}
+
+                            {% else %}
+
+                                Contact ASHVIK Finance
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="owner-detail">
+
+                        <small>
+                            Email
+                        </small>
+
+                        <strong>
+
+                            {% if owner["owner_email"] %}
+
+                                ✉️ {{ owner["owner_email"] }}
+
+                            {% else %}
+
+                                Email not provided
+
+                            {% endif %}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OFFICE ADDRESS -->
+
+                <div class="owner-address">
+
+                    <strong>
+                        📍 Office Address
+                    </strong>
+
+                    <br><br>
+
+                    {% if owner["office_address"] %}
+
+                        {{ owner["office_address"] }}
+
+                    {% else %}
+
+                        Office address will be updated by ASHVIK Finance.
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- ABOUT -->
+
+                <div class="owner-about">
+
+                    <strong>
+                        About ASHVIK Finance
+                    </strong>
+
+                    <br><br>
+
+                    {% if owner["about"] %}
+
+                        {{ owner["about"] }}
+
+                    {% else %}
+
+                        Welcome to ASHVIK Finance. We provide finance
+                        and loan options according to customer requirements.
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NO OWNER DATA -->
+
+        {% else %}
+
+        <div class="owner-empty">
+
+            <div style="font-size:45px; margin-bottom:10px;">
+                👤
+            </div>
+
+            <h3 style="color:#334155; margin-bottom:8px;">
+                ASHVIK Finance
+            </h3>
+
+            <p>
+                Owner profile information will appear here.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= AVAILABLE LOANS ================= -->
 
     <div class="section-title">
 
@@ -581,7 +899,15 @@
             <div class="loan-top">
 
                 <h3>
-                    {{ loan.title or loan.loan_name }}
+
+                    {% if loan.title %}
+                        {{ loan.title }}
+                    {% elif loan.loan_name %}
+                        {{ loan.loan_name }}
+                    {% else %}
+                        Loan
+                    {% endif %}
+
                 </h3>
 
                 <div class="loan-icon">
@@ -730,10 +1056,7 @@
     {% endif %}
 
 
-
-    <!-- =================================================
-         APPLICATION HISTORY
-    ================================================== -->
+    <!-- ================= APPLICATION HISTORY ================= -->
 
     <div class="section-title">
 
@@ -799,13 +1122,9 @@
                         <td>
 
                             {% if application.loan_title %}
-
                                 {{ application.loan_title }}
-
                             {% else %}
-
                                 Loan Application
-
                             {% endif %}
 
                         </td>
@@ -814,13 +1133,9 @@
                         <td>
 
                             {% if application.loan_amount %}
-
                                 ₹{{ application.loan_amount }}
-
                             {% else %}
-
                                 Not specified
-
                             {% endif %}
 
                         </td>
@@ -860,9 +1175,7 @@
 
 
                         <td>
-
                             {{ application.created_at or "—" }}
-
                         </td>
 
                     </tr>
@@ -898,10 +1211,7 @@
     </section>
 
 
-
-    <!-- =================================================
-         CTA
-    ================================================== -->
+    <!-- ================= CTA ================= -->
 
     <section class="cta">
 
@@ -931,9 +1241,7 @@
 </div>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
