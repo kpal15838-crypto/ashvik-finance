@@ -1,0 +1,10 @@
+
+__pycache__/
+*.pyc
+ashvik*.db
+app_before*.py
+app_failed_conversion_backup.py
+app_code_review.txt
+convert_app_to_postgres.py
+migrate_to_postgres.py
+restore_helpers.py
